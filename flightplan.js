@@ -19,7 +19,8 @@ plan.target('production', [
   {
     host: '139.59.244.123',
     username: 'koon',
-    agent: process.env.SSH_AUTH_SOCK
+    // agent: process.env.SSH_AUTH_SOCK
+    agent: '/Users/chengkoon/.ssh/id_rsa'
   },
 //add in another server if you have more than one
 // {
