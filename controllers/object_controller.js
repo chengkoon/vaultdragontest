@@ -3,40 +3,29 @@ const Object = require('../models/object')
 const objectController = {
 
   getObject: (req, res) => {
-    // let output = Object.findOne({$query:{key: req.params.key}, $orderby:{timestamp:-1}})
-    // .exec()
-    // .then(object => {
-    //   res.send('You are at get /object/:key and your object found is ', object)
-    // })
 
-    Object.findOne({ 'key': req.params.key }, '-_id -__v')
-    .sort('-timestamp')
+    Object.findOne({ 'key': req.params.key }, '-_id -__v -timestampMS')
+    .sort('-timestampMS')
     .exec((err, object) => {
       if (err) {
         console.log('err is ', err)
       } else {
-        var temp = new Date(object.timestamp).toString()
-        console.log('temp is ', temp)
-        object.timestamp = temp
         res.json(object)
       }
     })
-    // res.send('hahaha')
   },
-
-  // testObject: (req, res) => {
-  //   console.log('we are at testObject')
-  //   res.send('hehehe')
-  // },
 
   postObject: (req, res) => {
 
     var newObject = new Object()
-    var dateNowInMS = new Date().valueOf()
+    var dateNow = new Date()
+    var dateNowReadable = dateNow.toString()
+    var dateNowInMS = dateNow.getTime()
     for (var key in req.body) {
       newObject['key'] = key
       newObject['value'] = req.body[key]
-      newObject['timestamp'] = dateNowInMS
+      newObject['timestamp'] = dateNowReadable
+      newObject['timestampMS'] = dateNowInMS
     }
     newObject.save((err) => {
       if (err) throw err

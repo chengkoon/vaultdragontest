@@ -1,5 +1,4 @@
-{
-  "key": "testhaha",
-  "value": "testhehe",
-  "timestamp": 1501678368000
-}
+{"key":"key1","value":"value1","timestamp":"Thu Aug 03 2017 21:00:00 GMT+0800 (+08)","timestampMS":1501765200000}
+{"key":"key1","value":"value2","timestamp":"Thu Aug 03 2017 21:02:00 GMT+0800 (+08)","timestampMS":1501765320000}
+{"key":"key1","value":"value3","timestamp":"Thu Aug 03 2017 21:04:00 GMT+0800 (+08)","timestampMS":1501765440000}
+{"key":"key2","value":"value1","timestamp":"Thu Aug 03 2017 21:01:00 GMT+0800 (+08)","timestampMS":1501765260000}

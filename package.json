@@ -17,8 +17,6 @@
   },
   "devDependencies": {
     "chai": "^4.1.0",
-    "flightplan": "^0.6.17",
-    "fly": "^2.0.6",
     "mocha": "^3.5.0",
     "superagent": "^3.5.2"
   }

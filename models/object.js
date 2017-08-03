@@ -10,6 +10,10 @@ const ObjectSchema = new mongoose.Schema({
     required: true
   },
   timestamp: {
+    type: String,
+    required: true
+  },
+  timestampMS: {
     type: Number,
     required: true
   }
