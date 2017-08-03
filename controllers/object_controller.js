@@ -28,7 +28,7 @@ const objectController = {
 
     var newObject = new Object()
     var dateNowInMS = new Date().valueOf()
-    for (let key in req.body) {
+    for (var key in req.body) {
       newObject['key'] = key
       newObject['value'] = req.body[key]
       newObject['timestamp'] = dateNowInMS
