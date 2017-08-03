@@ -24,6 +24,11 @@ const objectController = {
     res.send('hahaha')
   },
 
+  testObject: (req, res) => {
+    console.log('we are at testObject')
+    res.send('hehehe')
+  },
+
   postObject: (req, res) => {
 
     var newObject = new Object()
