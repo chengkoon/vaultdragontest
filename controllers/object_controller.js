@@ -15,7 +15,7 @@ const objectController = {
       if (err) {
         console.log('err is ', err)
       } else {
-        let temp = new Date(object.timestamp).toString()
+        var temp = new Date(object.timestamp).toString()
         console.log('temp is ', temp)
         object.timestamp = temp
         res.json(object)
