@@ -9,25 +9,25 @@ const objectController = {
     //   res.send('You are at get /object/:key and your object found is ', object)
     // })
 
-    // Object.findOne({ 'key': req.params.key }, '-_id -__v')
-    // .sort('-timestamp')
-    // .exec((err, object) => {
-    //   if (err) {
-    //     console.log('err is ', err)
-    //   } else {
-    //     let temp = new Date(object.timestamp).toString()
-    //     console.log('temp is ', temp)
-    //     object.timestamp = temp
-    //     res.json(object)
-    //   }
-    // })
-    res.send('hahaha')
+    Object.findOne({ 'key': req.params.key }, '-_id -__v')
+    .sort('-timestamp')
+    .exec((err, object) => {
+      if (err) {
+        console.log('err is ', err)
+      } else {
+        let temp = new Date(object.timestamp).toString()
+        console.log('temp is ', temp)
+        object.timestamp = temp
+        res.json(object)
+      }
+    })
+    // res.send('hahaha')
   },
 
-  testObject: (req, res) => {
-    console.log('we are at testObject')
-    res.send('hehehe')
-  },
+  // testObject: (req, res) => {
+  //   console.log('we are at testObject')
+  //   res.send('hehehe')
+  // },
 
   postObject: (req, res) => {
 
