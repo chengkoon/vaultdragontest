@@ -31,6 +31,10 @@ app.use(bodyParser.json())
 // Routes
 app.use('/object', objectRoutes)
 
+app.use('*', (req, res) => {
+  res.send("You are at '/', please post request at /object with an object {'key':'value'} or get request at /object/keyName")
+})
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   res.status(422).send({error: err.message})
