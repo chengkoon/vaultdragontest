@@ -17,7 +17,7 @@ const objectController = {
     .sort('-timestampMS')
     .exec((err, object) => {
       if (err) {
-        console.log('err is ', err)
+        next(err)
       } else {
         res.json(object)
       }
