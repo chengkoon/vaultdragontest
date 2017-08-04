@@ -6,6 +6,7 @@ const objectController = {
   getObject: (req, res, next) => {
 
     var condition = [req.params]
+    // makes adding more conditions (e.g. location) in the future possible and more manageable
     if (req.query.hasOwnProperty('timestamp')) {
       var timestampCondition = { 'timestampMS': { $lte: (parseInt(req.query.timestamp) * 1000) } }
       condition.push(timestampCondition)
