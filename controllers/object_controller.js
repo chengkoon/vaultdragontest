@@ -1,10 +1,18 @@
 const Object = require('../models/object')
+const assert = require('assert')
 
 const objectController = {
 
-  getObject: (req, res) => {
+  getObject: (req, res, next) => {
 
-    Object.findOne({ 'key': req.params.key }, '-_id -__v -timestampMS')
+    var condition = [req.params]
+    if (req.query.hasOwnProperty('timestamp')) {
+      var timestampCondition = { 'timestampMS': { $lte: (parseInt(req.query.timestamp) * 1000) } }
+      condition.push(timestampCondition)
+    }
+    condition = { $and: condition }
+
+    Object.findOne(condition, '-_id -__v -timestampMS')
     .sort('-timestampMS')
     .exec((err, object) => {
       if (err) {
@@ -15,7 +23,7 @@ const objectController = {
     })
   },
 
-  postObject: (req, res) => {
+  postObject: (req, res, next) => {
 
     var newObject = new Object()
     var dateNow = new Date()
@@ -27,10 +35,13 @@ const objectController = {
       newObject['timestamp'] = dateNowReadable
       newObject['timestampMS'] = dateNowInMS
     }
-    newObject.save((err) => {
-      if (err) throw err
+    newObject.save((err, doc) => {
+      if (err) {
+        next(err)
+      } else {
+        res.status(200).json(doc)
+      }
     })
-    res.send(req.body)
   }
 }
 

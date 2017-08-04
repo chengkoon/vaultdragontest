@@ -19,4 +19,15 @@ const ObjectSchema = new mongoose.Schema({
   }
 })
 
+ObjectSchema.set('toJSON', {
+  transform: (doc, ret, options) => {
+    var retJson = {
+      key: ret.key,
+      value: ret.value,
+      timestamp: ret.timestamp
+    }
+    return retJson
+  }
+})
+
 const Object = module.exports = mongoose.model('Object', ObjectSchema)

@@ -11,7 +11,6 @@ const server = require('http').createServer(app)
 const port = process.env.PORT || 3000
 
 // Connect To Database
-// mongoose.connect(config.database)
 mongoose.Promise = global.Promise
 mongoose.connect(config.db)
 
@@ -29,8 +28,15 @@ app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
+// Routes
 app.use('/object', objectRoutes)
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  res.status(422).send({error: err.message})
+})
+
+// Checks if development or testing env
 if (require.main === module) {
   server.listen(port, () => {
     console.log(`Server Listening on port ${port}`)
