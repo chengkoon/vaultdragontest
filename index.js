@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000
 
 // Connect To Database
 mongoose.Promise = global.Promise
-mongoose.connect(config.db)
+mongoose.connect(config.db, {useMongoClient: true})
 
 // On Connection
 mongoose.connection.on('connected', () => {
